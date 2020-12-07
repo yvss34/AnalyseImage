@@ -4,10 +4,12 @@ from matplotlib import pyplot as plt
 img = cv2.imread('Images2020/barbara.jpg')
 
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-hist = cv2.calcHist([gray], [0], None, [256], [0, 256])
+# creating a Histograms Equalization
+equalized = cv2.equalizeHist(gray)
 
-cv2.imshow('image', img)
-cv2.imshow('gray', gray)
+hist = cv2.calcHist([equalized], [0], None, [256], [0, 256])
+
+cv2.imshow('image', equalized)
 
 plt.plot(hist, color='black')
 plt.show()
