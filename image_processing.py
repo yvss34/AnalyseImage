@@ -23,27 +23,20 @@ if __name__ == '__main__':
     print(rep_cour)
 
     #Lecture/Chargement d'une l'image
-    img = cv2.imread('Images2020/boats.jpg')
+    img = cv2.imread('Images2020/lisa.png')
 
     #Converti l'image de l'espace couleur BGR en espace couleur Gris
     img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-    # Applicage de l'operateur laplacien à l'image img
-    # Calcul dérivé de l'image img en fonction des changements horizontaux (Operateur Sobel)
-    # Calcul dérivé de l'image img en fonction des changements verticaux (Operateur Sobel)
-    laplacian = cv2.Laplacian(img,cv2.CV_64F)
-    sobelx = cv2.Sobel(img,cv2.CV_64F,1,0,ksize=5)
-    sobely = cv2.Sobel(img,cv2.CV_64F,0,1,ksize=5)
+    # Filtre moyenneur
+    filtre5 = cv2.blur(img,(2,2))
 
     #Ajout des images à la figure
     plt.subplot(2,2,1),plt.imshow(img,cmap = 'gray')
     plt.title('Original'), plt.xticks([]), plt.yticks([])
-    plt.subplot(2,2,2),plt.imshow(laplacian,cmap = 'gray')
-    plt.title('Laplacian'), plt.xticks([]), plt.yticks([])
-    plt.subplot(2,2,3),plt.imshow(sobelx,cmap = 'gray')
-    plt.title('Sobel X'), plt.xticks([]), plt.yticks([])
-    plt.subplot(2,2,4),plt.imshow(sobely,cmap = 'gray')
-    plt.title('Sobel Y'), plt.xticks([]), plt.yticks([])
+    plt.subplot(2,2,2),plt.imshow(filtre5,cmap = 'gray')
+    plt.title(''), plt.xticks([]), plt.yticks([])
+
 
     #Affichage de la figure
     plt.show()
